@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <p>Sign up to see photos and videos from your friends.
+                    </p>
+                    <form action="" method="post" novalidate>
+                        {% csrf_token%}
+                        {{ form|crispy}}
+                        <button type="submit" class="btn btn-primary btn-sm"> Sign up</button>
+                    </form>
+                </div>
+              <p class="mr-4 ml-4 mb-2">By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+            </div>
+            <div class="card mt-4">
+              <div class="card-body">
+                <p>Have an account? <a href="{% url 'login' %}">Log in</a></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
 
-  {% block content %}
-    <h1>signup</h1>
-  {% endblock %}
+{% endblock %}
