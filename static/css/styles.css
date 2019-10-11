@@ -1,6 +1,26 @@
+@media only screen and (max-width: 475px){
+    .download{
+        width:45%;
+        display:flex;
+        flex-direction:row;
+        display:inline;
+    }
+    #insta{
+        height:60%;
+    }
+
+}
+
 h1{
-color:green;
+    color:green;
 }
 .form-text, .asteriskField{
-display:none;
+    display:none;
+}
+.reg{
+    background-color:#f9f9f9;
+}
+.alert{
+    margin:0;
+    padding:0;
 }

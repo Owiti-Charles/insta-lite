@@ -15,6 +15,6 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-@login_required()
+@login_required(login_url='login')
 def index(request):
     return render(request, 'instagram/index.html')
