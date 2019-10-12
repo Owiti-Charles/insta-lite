@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm
 from django.contrib.auth import login, authenticate
@@ -29,11 +29,11 @@ def index(request):
 def profile(request, username):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        prof_form = UpdateUserProfileForm(request.FILES, request.POST, instance=request.user.profile)
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if user_form.is_valid() and prof_form.is_valid():
             user_form.save()
             prof_form.save()
-            redirect('profile')
+            return HttpResponseRedirect(request.path_info)
     else:
         user_form = UpdateUserForm(instance=request.user)
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
