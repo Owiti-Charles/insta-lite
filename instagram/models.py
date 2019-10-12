@@ -23,4 +23,10 @@ class Profile(models.Model):
         instance.profile.save()
 
 
+class Post(models.Model):
+    image = models.ImageField(upload_to='posts/')
+    caption = models.CharField(max_length=250)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
 
+    class Meta:
+        ordering = ["-pk"]
