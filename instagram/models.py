@@ -5,12 +5,12 @@ from django.dispatch import receiver
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_picture = models.ImageField(upload_to='images/', default='images/default.png')
-    bio = models.TextField(max_length=500, default="Welcome Me!")
+    bio = models.TextField(max_length=500, default="My Bio")
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-        instance.profile.save()
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+
+
