@@ -24,3 +24,44 @@ h1{
     margin:0;
     padding:0;
 }
+}
+.navbar{
+    background-color:white;
+}
+.instaicon{
+    display: inline-block;
+    background-image: url(/static/images/96319a506a03.png);
+}
+.instaglyph{
+    display: inline-block;
+    background-image: url(/static/images/868a059b8fc8.png);
+    margin: 8px;
+}
+.disc{
+    background-position: -458px -250px;
+    width: 24px;
+    height: 24px;
+}
+.like{
+    background-position: -458px -328px;
+    height: 24px;
+    width: 24px;
+    margin-left: 30px;
+}
+.pers{
+    background-position: -157px -357px;
+    height: 24px;
+    width: 24px;
+    margin-left: 30px;
+}
+.logo{
+    background-position: -98px -203px;
+    height: 35px;
+    width: 176px;
+}
+.mainicon{
+    background-position: -401px -388px;
+    height: 30px;
+    width: 30px;
+    margin-right: 146px;
+}
