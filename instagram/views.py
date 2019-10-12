@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm
 from django.contrib.auth import login, authenticate
+from .models import Post
 
 
 def signup(request):
@@ -22,7 +23,11 @@ def signup(request):
 
 @login_required(login_url='login')
 def index(request):
-    return render(request, 'instagram/index.html')
+    images = Post.objects.all()
+    params = {
+        'images': images,
+    }
+    return render(request, 'instagram/index.html', params)
 
 
 @login_required(login_url='login')

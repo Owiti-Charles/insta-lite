@@ -1,8 +1,27 @@
 {% extends 'instagram/layout.html' %}
 
 {% block content %}
-<div class="container main">
+<div class="container" style="margin-top:7%;">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            {% for image in images %}
+            <div class="card">
+                <div class="card-title">
+                    <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-3 "
+                         alt="{{image.user.user.username}}" width="40" height="40">
+                </div>
+                <div class="card-body">
+                    <div class="card-text" style="background-image:url({{ image.image.url }});;background-size: contain;position: sticky">
+                        <img src="{{image.image.url}}" style="visibility: hidden;"  class="card-img" width="100%"/>
+                    </div>
+                </div>
+            </div>
 
+            {% endfor %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>
 
 {% endblock %}
