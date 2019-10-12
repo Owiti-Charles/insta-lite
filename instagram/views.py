@@ -26,6 +26,6 @@ def index(request):
 
 
 @login_required(login_url='login')
-def profile(request):
+def profile(request, username):
     user = request.user
     return render(request, 'instagram/profile.html',{'user':user})
