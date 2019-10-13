@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm
+from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm
 from django.contrib.auth import login, authenticate
 from .models import Post
 
@@ -24,8 +24,11 @@ def signup(request):
 @login_required(login_url='login')
 def index(request):
     images = Post.objects.all()
+    form = PostForm()
+
     params = {
         'images': images,
+        'form': form,
     }
     return render(request, 'instagram/index.html', params)
 
