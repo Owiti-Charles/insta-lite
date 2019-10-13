@@ -62,7 +62,7 @@
                     <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
                 </div>
                 <div class="col-md-6 mt-4 user-detail">
-                    <span class=" text-secondary">{{ user.username }}</span> <br>
+                    <span class=" text-secondary"><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></span> <br>
                     <span class=" inname">{{ user.profile.name }}</span>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                                          width="45px" height="45px">
                                 </div>
                                 <div class="col-md-6 mr-2 mt-2">
-                                    <span>{{user.username}}</span>
+                                    <span><a href=""></a>{{user.username}}</span>
                                 </div>
                                 <div class="col-md-4">
                                 </div>

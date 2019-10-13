@@ -6,9 +6,9 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             {% if results %}
-            <h5 class="text-center" id="found">Found {{ results|length }} user{{ results|pluralize }}</h5>
+            <h5 class="text-center">Found {{ results|length }} user{{ results|pluralize }}</h5>
             {% else %}
-            <h5 class="text-center" id="foundnon"> Found 0 user with username <strong>{{message}}</strong></h5>
+            <h5 class="text-center"> Found 0 user with username <strong>{{message}}</strong></h5>
 
             <a class="d-block mx-auto" href="/">
                 <button class="btn btn-sm btn-info d-block mx-auto">Back Home</button>
@@ -25,7 +25,7 @@
                              class="rounded-circle border ml-3 mt-2  mr-3" width="55" height="55">
                     </div>
                     <div class="col-md-6 mt-2">
-                        <span><strong>{{user_profile.user.username}}</strong></span><br>
+                        <span><strong><a href="{% url 'user_profile' user_profile.user.username  %}">{{user_profile.user.username}}</a></strong></span><br>
                         <span class="text-secondary">{{user_profile.user.profile.name}}</span>
                     </div>
                     <div class="col-md-3 mt-3">
