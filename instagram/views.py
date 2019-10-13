@@ -45,6 +45,7 @@ def index(request):
 
 @login_required(login_url='login')
 def profile(request, username):
+
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -61,3 +62,8 @@ def profile(request, username):
 
     }
     return render(request, 'instagram/profile.html', params)
+
+
+@login_required(login_url='login')
+def post_comment(request, id):
+    return redirect('instagram/single_post.html')

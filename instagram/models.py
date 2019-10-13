@@ -32,8 +32,18 @@ class Post(models.Model):
     class Meta:
         ordering = ["-pk"]
 
+    @property
+    def get_all_comments(self):
+        return self.comments.all()
+
+    def __str__(self):
+        return f'{self.user.name} Post'
+
 
 class Comment(models.Model):
-    text = models.TextField()
+    comment = models.TextField()
     photo = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
+
+    def __str__(self):
+        return f'{self.user.name} Post'
