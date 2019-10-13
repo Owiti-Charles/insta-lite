@@ -1,0 +1,47 @@
+{% extends 'instagram/layout.html' %}
+{% block content %}
+
+<div class="container" style="margin-top:7%">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% if results %}
+            <h5 class="text-center" id="found">Found {{ results|length }} user{{ results|pluralize }}</h5>
+            {% else %}
+            <h5 class="text-center" id="foundnon"> Found 0 user with username <strong>{{message}}</strong></h5>
+
+            <a class="d-block mx-auto" href="/">
+                <button class="btn btn-sm btn-info d-block mx-auto">Back Home</button>
+            </a>
+            {% endif %}
+            <hr>
+            {% if results %}
+            {% for user_profile in results %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{user_profile.user.profile.profile_picture.url}}" alt=""
+                             class="rounded-circle border ml-3 mt-2  mr-3" width="55" height="55">
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <span><strong>{{user_profile.user.username}}</strong></span><br>
+                        <span class="text-secondary">{{user_profile.user.profile.name}}</span>
+                    </div>
+                    <div class="col-md-3 mt-3">
+                        <button class="btn btn-sm btn-outline-primary">follow</button>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
+
+{% endblock %}
