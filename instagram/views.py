@@ -86,6 +86,7 @@ def post_comment(request, id):
         'image': image,
         'form': form,
         'is_liked': is_liked,
+        'total_likes': image.total_likes()
     }
     return render(request, 'instagram/single_post.html', params)
 

@@ -23,7 +23,7 @@
                 {% empty %}
                 <p class="ml-3">No comments here yet</p>
                 {% endfor %}
-                <hr style="width:96%; margin-top:96%;">
+                <hr style="width:96%; margin-top:86%;">
                 <form action="{% url 'like_post' %}" method="post">
                     {% csrf_token %}
                     {% if is_liked %}
@@ -34,6 +34,7 @@
                     </button>
                     {% endif %}
                 </form>
+                <span>{{ total_likes }} like</span>
                 <form action="" method="post" novalidate>
                     {% csrf_token %}
                     {{ form|crispy }}
