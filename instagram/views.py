@@ -24,8 +24,15 @@ def signup(request):
 @login_required(login_url='login')
 def index(request):
     images = Post.objects.all()
-    form = PostForm()
-
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user.profile
+            post.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = PostForm()
     params = {
         'images': images,
         'form': form,
