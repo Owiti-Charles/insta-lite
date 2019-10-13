@@ -68,6 +68,20 @@ def profile(request, username):
 
 
 @login_required(login_url='login')
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', username=request.user.username)
+    user_posts = user_prof.profile.posts.all()
+
+    params = {
+        'user_prof': user_prof,
+        'user_posts': user_posts
+    }
+    return render(request, 'instagram/user_profile.html', params)
+
+
+@login_required(login_url='login')
 def post_comment(request, id):
     image = get_object_or_404(Post, pk=id)
     is_liked = False

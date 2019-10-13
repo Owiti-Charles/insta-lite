@@ -40,7 +40,7 @@
                 <div class="card-title">
                     <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                          alt="{{image.user.user.username}}" width="35" height="35">
-                    <a href="" class="mt-4 user">{{image.user.user.username | title}}</a>
+                    <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user">{{image.user.user.username | title}}</a>
                 </div>
                 <div class="card-body mb-4">
                     <div class="card-text"

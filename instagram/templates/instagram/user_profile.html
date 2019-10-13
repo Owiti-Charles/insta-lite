@@ -1,0 +1,43 @@
+{% extends 'instagram/layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container" style="margin-top:8%">
+    <div class="content-section">
+        <div class="media">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <img class="rounded-circle account-img" src="{{ user_prof.profile.profile_picture.url }}">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="media-body">
+                            <div class="account-heading">
+                                <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
+                            </div>
+
+                            <div class="post-details mt-3 mb-3">
+                                <span class="mr-5"><strong>{{user_posts.count}}</strong> Posts</span>
+                                <span class="mr-5"> <strong>0</strong> followers</span>
+                                <span class="mr-5"> <strong>0</strong> following</span>
+                            </div>
+                            <h5>{{ user.profile.name }}</h5>
+                            <p class="text-secondary">{{ user.profile.bio }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <hr class="mt-4">
+    <div class="card-columns">
+        {% for image in user_posts %}
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
