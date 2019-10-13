@@ -36,6 +36,7 @@ h1{
 .instaicon{
     display: inline-block;
     background-image: url(/static/images/96319a506a03.png);
+    padding:0px;
 }
 .instaglyph{
     display: inline-block;

@@ -38,7 +38,8 @@ def index(request):
     params = {
         'images': images,
         'form': form,
-        'users': users
+        'users': users,
+
     }
     return render(request, 'instagram/index.html', params)
 

@@ -52,6 +52,7 @@
                     <a class="instaicon like mt-2 mb-2"></a>
                     <a href="{% url 'comment' image.id %}" class="instaicon like mt-2 mb-2"></a>
                 </div>
+                <span class="ml-4 mb-3"><strong>{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
             </div>
             {% endfor %}
         </div>
