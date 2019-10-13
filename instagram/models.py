@@ -23,9 +23,14 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
+
 
 class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
+    name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
@@ -36,6 +41,14 @@ class Post(models.Model):
     @property
     def get_all_comments(self):
         return self.comments.all()
+
+    @property
+    def save_image(self):
+        self.save()
+
+    @property
+    def delete(self):
+        self.delete()
 
     def total_likes(self):
         return self.likes.count()

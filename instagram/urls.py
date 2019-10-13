@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/<username>/', views.profile, name='profile'),
     path('post/<id>', views.post_comment, name='comment'),
     path('like', views.like_post, name='like_post'),
+    path('search/', views.search_profile, name='search')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
