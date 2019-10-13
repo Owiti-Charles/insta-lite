@@ -1,27 +1,31 @@
 {% extends 'instagram/layout.html' %}
-
+{% load static %}
 {% block content %}
 <div class="container" style="margin-top:7%;">
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-7">
             {% for image in images %}
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-title">
-                    <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-3 "
-                         alt="{{image.user.user.username}}" width="40" height="40">
+                    <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
+                         alt="{{image.user.user.username}}" width="35" height="35">
+                    <a href="" class="mt-4 user">{{image.user.user.username | title}}</a>
                 </div>
-                <div class="card-body">
-                    <div class="card-text" style="background-image:url({{ image.image.url }});;background-size: contain;position: sticky">
-                        <img src="{{image.image.url}}" style="visibility: hidden;"  class="card-img" width="100%"/>
+                <div class="card-body mb-4">
+                    <div class="card-text"
+                         style="background-image:url({{ image.image.url }});;background-size: contain;position: sticky">
+                        <img src="{{image.image.url}}" style="visibility: hidden;" class="card-img" width="100%"/>
                     </div>
                 </div>
+                <div class="wrapper" onclick="choose({{image.id}})">
+                    <span class="instaicon like mt-2 mb-4"></span>
+                </div>
             </div>
-
             {% endfor %}
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</div>
 
-{% endblock %}
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    {% endblock %}
