@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm
+from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, CommentForm
 from django.contrib.auth import login, authenticate
-from .models import Post
+from .models import Post, Comment
 from django.contrib.auth.models import User
 
 
@@ -45,7 +45,6 @@ def index(request):
 
 @login_required(login_url='login')
 def profile(request, username):
-
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -66,4 +65,10 @@ def profile(request, username):
 
 @login_required(login_url='login')
 def post_comment(request, id):
-    return redirect('instagram/single_post.html')
+    form = CommentForm()
+    image = get_object_or_404(Post, pk=id)
+    params = {
+        'image': image,
+        'form': form,
+    }
+    return render(request, 'instagram/single_post.html', params)

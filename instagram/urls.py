@@ -8,6 +8,7 @@ urlpatterns = [
     path('account/', include('django.contrib.auth.urls')),
     path('', views.index, name='index'),
     path('profile/<username>/', views.profile, name='profile'),
+    path('post/<id>', views.post_comment, name='comment')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
