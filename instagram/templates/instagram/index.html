@@ -59,16 +59,32 @@
                 <div class="col-md-3 ml-2">
                     <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
                 </div>
-                <div class="col-md-6 mt-4 user-details">
-                    <span class="mr-3 text-secondary">{{ user.username }}</span> <br>
-                    <span class="mr-3 inname">{{ user.profile.name }}</span>
+                <div class="col-md-6 mt-4 user-detail">
+                    <span class=" text-secondary">{{ user.username }}</span> <br>
+                    <span class=" inname">{{ user.profile.name }}</span>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="card mt-4 mr-2 ml-2">
+                        <div class="card-title text-secondary mt-2 mr-2 ml-2 ">Suggestions</div>
+                        {% for user in users %}
+                        <div class="container">
+                            <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
+                             <p>{{user.username}}</p>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+
 
         </div>
 
     </div>
-    <p class="text-center">All rights reserved. Charles Owiti @ 2019</p>
+    <p class="text-center mt-5">All rights reserved. Charles Owiti @ 2019</p>
 </div>
 
 {% endblock %}

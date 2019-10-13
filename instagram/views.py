@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm
 from django.contrib.auth import login, authenticate
 from .models import Post
+from django.contrib.auth.models import User
 
 
 def signup(request):
@@ -24,6 +25,7 @@ def signup(request):
 @login_required(login_url='login')
 def index(request):
     images = Post.objects.all()
+    users = User.objects.all()
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -36,6 +38,7 @@ def index(request):
     params = {
         'images': images,
         'form': form,
+        'users': users
     }
     return render(request, 'instagram/index.html', params)
 

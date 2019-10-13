@@ -31,3 +31,9 @@ class Post(models.Model):
 
     class Meta:
         ordering = ["-pk"]
+
+
+class Comment(models.Model):
+    text = models.TextField()
+    photo = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
