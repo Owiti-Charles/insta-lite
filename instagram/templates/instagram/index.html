@@ -72,8 +72,17 @@
                         <div class="card-title text-secondary mt-2 mr-2 ml-2 ">Suggestions</div>
                         {% for user in users %}
                         <div class="container">
-                            <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
-                            <p>{{user.username}}</p>
+                            <div class="row">
+                                <div class="col-md-2 mr-3 mt-1 mb-2">
+                                    <img class="rounded-circle" src="{{ user.profile.profile_picture.url }}"
+                                         width="45px" height="45px">
+                                </div>
+                                <div class="col-md-6 mr-2 mt-2">
+                                    <span>{{user.username}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                            </div>
                         </div>
 
                         {% endfor %}
