@@ -7,7 +7,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-7">
             <div class="row">
-                <button class="btn btn-sm btn-outline-primary ml-4 mb-4" data-toggle="modal" data-target="#imageUpload">
+                <button class="btn btn-sm btn-outline-primary ml-4 mb-3" data-toggle="modal" data-target="#imageUpload">
                     Upload Image
                 </button>
                 <div class="modal fade" id="imageUpload" tabindex="-1" role="dialog"
@@ -25,7 +25,9 @@
                                     {% csrf_token %}
                                     {{ form|crispy }}
                                     <button class="btn btn-sm btn-success">Upload</button>
-                                    <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
+                                        Close
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -51,9 +53,22 @@
                 </div>
             </div>
             {% endfor %}
-
-            <div class="col-md-4"></div>
         </div>
-    </div>
+        <div class="col-md-4 mt-4 userinfo">
+            <div class="row">
+                <div class="col-md-3 ml-2">
+                    <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
+                </div>
+                <div class="col-md-6 mt-4 user-details">
+                    <span class="mr-3 text-secondary">{{ user.username }}</span> <br>
+                    <span class="mr-3 inname">{{ user.profile.name }}</span>
+                </div>
+            </div>
 
-    {% endblock %}
+        </div>
+
+    </div>
+    <p class="text-center">All rights reserved. Charles Owiti @ 2019</p>
+</div>
+
+{% endblock %}

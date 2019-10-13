@@ -86,6 +86,20 @@ body{
     height: 165px;
     width: 165px;
 }
+.user-img {
+    height: 55px;
+    width: 55px;
+    margin-top:25px;
+}
+.inname{
+    font-size:14px;
+}
+.user-details{
+    margin-left:-20px;
+}
+.userinfo{
+    margin-top:20px;
+}
 .username{
     font-size:30px;
 }

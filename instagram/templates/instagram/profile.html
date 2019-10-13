@@ -4,26 +4,28 @@
 <div class="container" style="margin-top:8%">
     <div class="content-section">
         <div class="media">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-3">
-                    <img class="rounded-circle account-img" src="{{ user.profile.profile_picture.url }}">
-                </div>
-                <div class="col-md-7 mt-3">
-                    <div class="media-body">
-                        <div class="account-heading"><span
-                                class="mr-3 text-secondary username">{{ user.username }}</span>
-                            <a class="btn btn-sm btn-outline-secondary mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit
-                                Profile</strong></a>
-                            <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><i class="fa fa-cog mt-3" id="cog"></i></a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <img class="rounded-circle account-img" src="{{ user.profile.profile_picture.url }}">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="media-body">
+                            <div class="account-heading"><span
+                                    class="mr-3 text-secondary username">{{ user.username }}</span>
+                                <a class="btn btn-sm btn-outline-secondary mr-3" data-toggle="modal"
+                                   data-target=".bd-example-modal-md"><strong>Edit
+                                    Profile</strong></a>
+                                <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><i class="fa fa-cog mt-3"
+                                                                                                  id="cog"></i></a>
+                            </div>
+                            <h5>{{ user.profile.name }}</h5>
+                            <p class="text-secondary">{{ user.profile.bio }}</p>
                         </div>
-                        <h5>{{ user.profile.name }}</h5>
-                        <p class="text-secondary">{{ user.profile.bio }}</p>
                     </div>
                 </div>
             </div>
-
-
         </div>
         <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
