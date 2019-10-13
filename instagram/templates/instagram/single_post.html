@@ -22,7 +22,12 @@
                 {% empty %}
                 <p class="ml-3">No comments here yet</p>
                 {% endfor %}
-
+                <hr style="width:96%; margin-top:96%;">
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-sm btn-outline-primary">post</button>
+                </form>
             </div>
             <div class="col-md-1"></div>
         </div>

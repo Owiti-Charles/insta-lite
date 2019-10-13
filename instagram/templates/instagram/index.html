@@ -48,8 +48,9 @@
                         <img src="{{image.image.url}}" style="visibility: hidden;" class="card-img" width="100%"/>
                     </div>
                 </div>
-                <div class="wrapper" onclick="choose({{image.id}})">
-                    <span class="instaicon like mt-2 mb-4"></span>
+                <div class="iconic">
+                    <a class="instaicon like mt-2 mb-2"></a>
+                    <a href="{% url 'comment' image.id %}" class="instaicon like mt-2 mb-2"></a>
                 </div>
             </div>
             {% endfor %}
@@ -71,7 +72,7 @@
                         {% for user in users %}
                         <div class="container">
                             <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
-                             <p>{{user.username}}</p>
+                            <p>{{user.username}}</p>
                         </div>
 
                         {% endfor %}

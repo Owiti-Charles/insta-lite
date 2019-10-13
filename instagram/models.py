@@ -42,7 +42,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     comment = models.TextField()
-    photo = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
