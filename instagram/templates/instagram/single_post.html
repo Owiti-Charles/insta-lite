@@ -24,17 +24,9 @@
                 <p class="ml-3">No comments here yet</p>
                 {% endfor %}
                 <hr style="width:96%; margin-top:84%;">
-                <form action="{% url 'like_post' %}" method="post">
-                    {% csrf_token %}
-                    {% if is_liked %}
-                    <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}"><i class="fa fa-heart hearticon mx-auto" aria-hidden="true" style="color:red"></i></a>
-                    </button>
-                    {% else %}
-                    <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}"><i class="far fa-heart hearticon mx-auto" aria-hidden="true" style=""></i>
-                    </button>
-                    {% endif %}
-                </form>
-                <span>{{ total_likes }} like{{ total_likes | pluralize}}</span>
+                <div id="like-section">
+                    {% include 'instagram/like_section.html' %}
+                </div>
                 <form action="" method="post" novalidate>
                     {% csrf_token %}
                     {{ form|crispy }}

@@ -38,6 +38,9 @@ class Post(models.Model):
     class Meta:
         ordering = ["-pk"]
 
+    def get_absolute_url(self):
+        return f"/post/{self.id}"
+
     @property
     def get_all_comments(self):
         return self.comments.all()

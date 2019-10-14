@@ -5,6 +5,11 @@ from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, 
 from django.contrib.auth import login, authenticate
 from .models import Post, Comment, Profile
 from django.contrib.auth.models import User
+from django.template.loader import render_to_string
+from django.views.generic import RedirectView
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
 
 
 def signup(request):
@@ -105,8 +110,50 @@ def post_comment(request, id):
     return render(request, 'instagram/single_post.html', params)
 
 
+class PostLikeToggle(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        id = self.kwargs.get('id')
+        print(id)
+        obj = get_object_or_404(Post, pk=id)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user in obj.likes.all():
+            obj.likes.remove(user)
+        else:
+            obj.likes.add(user)
+        return url_
+
+
+class PostLikeAPIToggle(APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, id=None, format=None):
+        # id = self.kwargs.get('id')
+        obj = get_object_or_404(Post, pk=id)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        updated = False
+        liked = False
+        if user in obj.likes.all():
+            liked = False
+            obj.likes.remove(user)
+        else:
+            liked = True
+            obj.likes.add(user)
+        updated = True
+        data = {
+
+            'updated': updated,
+            'liked': liked,
+        }
+        print(data)
+        return Response(data)
+
+
 def like_post(request):
-    image = get_object_or_404(Post, id=request.POST.get('image_id'))
+    # image = get_object_or_404(Post, id=request.POST.get('image_id'))
+    image = get_object_or_404(Post, id=request.POST.get('id'))
     is_liked = False
     if image.likes.filter(id=request.user.id).exists():
         image.likes.remove(request.user)
@@ -114,7 +161,15 @@ def like_post(request):
     else:
         image.likes.add(request.user)
         is_liked = False
-    return redirect('comment', id=image.id)
+
+    params = {
+        'image': image,
+        'is_liked': is_liked,
+        'total_likes': image.total_likes()
+    }
+    if request.is_ajax():
+        html = render_to_string('instagram/like_section.html', params, request=request)
+        return JsonResponse({'form': html})
 
 
 @login_required(login_url='login')
@@ -134,9 +189,3 @@ def search_profile(request):
     return render(request, 'instagram/results.html', {'message': message})
 
 
-@login_required(login_url='/accounts/login/')
-def togglefollow(request, user_id):
-    target = get_object_or_404(User, pk=user_id).profile
-    request.user.profile.togglefollow(target)
-    response = [target.followers.count(), target.following.count()]
-    return JsonResponse(response, safe=False)

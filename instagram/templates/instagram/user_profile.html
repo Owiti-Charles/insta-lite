@@ -15,27 +15,36 @@
                             <div class="account-heading">
                                 <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
                             </div>
-
-                            <div class="post-details mt-3 mb-3">
-                                <span class="mr-5"><strong>{{user_posts.count}}</strong> Posts</span>
-                                <span class="mr-5"> <strong>{{ user_prof.profile.followers.count }}</strong> followers</span>
-                                <span class="mr-5"> <strong>0</strong> following</span>
-                            </div>
-                            <h5>{{ user.profile.name }}</h5>
-                            <p class="text-secondary">{{ user.profile.bio }}</p>
+                            <button id="follow" class="editbtn {% if not isfollowing %}d-none{% endif %} btn-primary"
+                                    onclick="togglefollow({{user_prof.id}})">
+                                <span class="edittext">Follow</span>
+                            </button>
+                            <button id="follown" class="btn {% if isfollowing %}d-none{% endif %} followbtn"
+                                    onclick="togglefollow({{user_prof.id}})">
+                                <span class="edittext">Following</span>
+                            </button>
                         </div>
+
+                        <div class="post-details mt-3 mb-3">
+                            <span class="mr-5"><strong>{{user_posts.count}}</strong> Posts</span>
+                            <span class="mr-5"> <strong>{{ user_prof.profile.followers.count }}</strong> followers</span>
+                            <span class="mr-5"> <strong>0</strong> following</span>
+                        </div>
+                        <h5>{{ user.profile.name }}</h5>
+                        <p class="text-secondary">{{ user.profile.bio }}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <hr class="mt-4">
     <div class="card-columns">
         {% for image in user_posts %}
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>

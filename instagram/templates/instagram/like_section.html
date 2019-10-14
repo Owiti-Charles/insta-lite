@@ -1,0 +1,13 @@
+<form action="{% url 'liked' image.id %}" method="post">
+    {% csrf_token %}
+    {% if is_liked %}
+    <button class="btn btn-sm" type="submit" id="like" name="image_id" value="{{image.id}}"><i
+            class="fa fa-heart hearticon mx-auto" aria-hidden="true" style="color:red"></i></a>
+    </button>
+    {% else %}
+    <button class="btn btn-sm" type="submit" id="like"  name="image_id" value="{{image.id}}"><i
+            class="far fa-heart hearticon mx-auto" aria-hidden="true" style=""></i>
+    </button>
+    {% endif %}
+</form>
+<span>{{ total_likes }} like{{ total_likes | pluralize}}</span>
