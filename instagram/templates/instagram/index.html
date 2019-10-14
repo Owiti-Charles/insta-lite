@@ -68,6 +68,7 @@
                     </div>
                     {% empty %}
                     {% endfor %}
+                    <p class="text-secondary ml-4">{{image.created|timesince}}</p>
                 </div>
             </div>
             {% endfor %}

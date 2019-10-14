@@ -16,12 +16,13 @@
                                 <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
                                 {% for follower in followers%}
                                 {% if user == follower.follower.user %}
-                                <a class="btn btn-sm btn-outline-danger ml-5"
-                                                   href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
+                                <a class="btn btn-sm btn-outline-danger ml-5" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
 
                                 {%else%}
+                                {% if follower.count > 1%}
                                 <a class="btn btn-sm btn-primary ml-5"
                                    href="{% url 'follow' user_prof.profile.id %}">Follow</a>
+                                {% endif %}
                                 {% endif %}
                                 {% empty %}
                                 <a class="btn btn-sm btn-primary ml-5"
