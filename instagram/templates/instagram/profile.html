@@ -23,8 +23,8 @@
 
                             <div class="post-details mt-3 mb-3">
                                 <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
-                                <span class="mr-5"> <strong>0</strong> followers</span>
-                                <span class="mr-5"> <strong>0</strong> following</span>
+                                <span class="mr-5"> <strong>{{ user.profile.followers.count }}</strong> followers</span>
+                                <span class="mr-5"> <strong>{{ user.profile.following.count }}</strong> following</span>
                             </div>
                             <h5>{{ user.profile.name }}</h5>
                             <p class="text-secondary">{{ user.profile.bio }}</p>

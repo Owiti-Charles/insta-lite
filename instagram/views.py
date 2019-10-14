@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, CommentForm
 from django.contrib.auth import login, authenticate
@@ -132,3 +132,11 @@ def search_profile(request):
     else:
         message = "You haven't searched for any image category"
     return render(request, 'instagram/results.html', {'message': message})
+
+
+@login_required(login_url='/accounts/login/')
+def togglefollow(request, user_id):
+    target = get_object_or_404(User, pk=user_id).profile
+    request.user.profile.togglefollow(target)
+    response = [target.followers.count(), target.following.count()]
+    return JsonResponse(response, safe=False)
