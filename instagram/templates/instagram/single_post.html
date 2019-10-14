@@ -12,7 +12,7 @@
             <div class="col-md-3 mt-2">
                 <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                      alt="{{image.user.user.username}}" width="35" height="35">
-                <a href="" class="mt-4 user">{{image.user.user.username | title}}</a>
+                <a href="{% url 'user_profile' image.user.user.username %}" class="mt-4 user">{{image.user.user.username | title}}</a>
 
                 <hr style="width:96%">
                 {% for comment in image.comments.all %}
@@ -27,10 +27,18 @@
                 <div id="like-section">
                     {% include 'instagram/like_section.html' %}
                 </div>
-                <form action="" method="post" novalidate>
+                <form class="form" action="" method="post" novalidate>
                     {% csrf_token %}
-                    {{ form|crispy }}
-                    <!--<button type="submit" class="btn btn-sm btn-outline-primary">post</button>-->
+                    <div class="row">
+                        <div class="col-md-10">
+                            {{ form|crispy }}
+                        </div>
+                        <div class="col-md-2 mt-4" >
+                            <button type="submit" class="btn btn-sm btn-outline-primary" style="margin-top:14px; margin-left:-10px">post</button>
+                        </div>
+                    </div>
+
+
                 </form>
             </div>
             <div class="col-md-1"></div>

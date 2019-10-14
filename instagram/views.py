@@ -93,7 +93,7 @@ def post_comment(request, id):
     is_liked = False
     if image.likes.filter(id=request.user.id).exists():
         is_liked = True
-    if request.method == 'Post':
+    if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             savecomment = form.save(commit=False)
