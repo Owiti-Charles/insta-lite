@@ -14,7 +14,9 @@ urlpatterns = [
     path('post/<id>/like', PostLikeToggle.as_view(), name='liked'),
     path('api/post/<id>/like', PostLikeAPIToggle.as_view(), name='liked-api'),
     path('like', views.like_post, name='like_post'),
-    path('search/', views.search_profile, name='search')
+    path('search/', views.search_profile, name='search'),
+    path('unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
+    path('follow/<to_follow>', views.follow, name='follow')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

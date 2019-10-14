@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, UpdateUserForm, UpdateUserProfileForm, PostForm, CommentForm
 from django.contrib.auth import login, authenticate
-from .models import Post, Comment, Profile
+from .models import Post, Comment, Profile, Follow
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.views.generic import RedirectView
@@ -77,11 +77,13 @@ def user_profile(request, username):
     if request.user == user_prof:
         return redirect('profile', username=request.user.username)
     user_posts = user_prof.profile.posts.all()
-
+    followers = Follow.objects.filter(followed=user_prof.profile)
     params = {
         'user_prof': user_prof,
-        'user_posts': user_posts
+        'user_posts': user_posts,
+        'followers': followers
     }
+    print(followers)
     return render(request, 'instagram/user_profile.html', params)
 
 
@@ -189,3 +191,18 @@ def search_profile(request):
     return render(request, 'instagram/results.html', {'message': message})
 
 
+def unfollow(request, to_unfollow):
+    if request.method == 'GET':
+        user_profile2 = Profile.objects.get(pk=to_unfollow)
+        unfollow_d = Follow.objects.filter(follower=request.user.profile, followed=user_profile2)
+        unfollow_d.delete()
+        return redirect('user_profile', user_profile2.user.username)
+
+
+def follow(request, to_follow):
+    if request.method == 'GET':
+        print('********************************')
+        user_profile3 = Profile.objects.get(pk=to_follow)
+        follow_s = Follow(follower=request.user.profile, followed=user_profile3)
+        follow_s.save()
+        return redirect('user_profile', user_profile3.user.username)
