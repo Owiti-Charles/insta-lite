@@ -65,6 +65,9 @@ class Comment(models.Model):
     def __str__(self):
         return f'{self.user.name} Post'
 
+    class Meta:
+        ordering = ["-pk"]
+
 
 class Likes(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user_likes')

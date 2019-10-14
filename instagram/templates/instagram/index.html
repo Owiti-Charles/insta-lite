@@ -36,11 +36,11 @@
             </div>
 
             {% for image in images %}
-            <div class="card mb-3">
+            <div class="card mb-4">
                 <div class="card-title">
                     <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                          alt="{{image.user.user.username}}" width="35" height="35">
-                    <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user">{{image.user.user.username | title}}</a>
+                    <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user">{{image.user.user.username|title}}</a>
                 </div>
                 <div class="card-body mb-4">
                     <div class="card-text"
@@ -48,11 +48,27 @@
                         <img src="{{image.image.url}}" style="visibility: hidden;" class="card-img" width="100%"/>
                     </div>
                 </div>
-                <div class="iconic">
-                    <a class="instaicon like mt-2 mb-2"></a>
-                    <a href="{% url 'comment' image.id %}" class="instaicon like mt-2 mb-2"></a>
+                <div class="iconic ml-2">
+                    <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
+                        <a href="{% url 'comment' image.id %}"><i class="far fa-heart hearticon mx-auto"
+                                                                  aria-hidden="true" style=""></i></a>
+                    </button>
+                    <button class="btn btn-sm" type="submit"><a href="{% url 'comment' image.id %}"><i
+                            class="far fa-comment hearticon mx-auto" aria-hidden="true"></i>
+                    </a></button>
                 </div>
-                <span class="ml-4 mb-3"><strong>{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
+                <span class="ml-4 mb-1"><strong>{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
+                <span class="text-secondary ml-4 viewall"><a href="{% url 'comment' image.id %}">view all {{image.comments.count}} comment{{image.comments.count|pluralize}}</a></span>
+                <div class="allcomments mb-4">
+                    {% for comment in image.comments.all|slice:'2' %}
+                    <div class="comment">
+                        <div class="ml-4"><strong>{{ comment.user.user.username }}</strong> <span
+                                class="text-secondary">{{ comment.comment }}</span>
+                        </div>
+                    </div>
+                    {% empty %}
+                    {% endfor %}
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -62,7 +78,8 @@
                     <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
                 </div>
                 <div class="col-md-6 mt-4 user-detail">
-                    <span class=" text-secondary"><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></span> <br>
+                    <span class=" text-secondary"><a
+                            href="{% url 'user_profile' user.username %}">{{ user.username }}</a></span> <br>
                     <span class=" inname">{{ user.profile.name }}</span>
                 </div>
             </div>

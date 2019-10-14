@@ -57,7 +57,6 @@ def profile(request, username):
     else:
         user_form = UpdateUserForm(instance=request.user)
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
-        print(images)
     params = {
         'user_form': user_form,
         'prof_form': prof_form,

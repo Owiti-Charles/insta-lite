@@ -48,6 +48,16 @@ h1{
     color:black;
     text-align:center;
 }
+.hearticon{
+    color:black;
+    font-size:30px;
+    margin-left:-10px;
+    margin-right:-10px;
+}
+.viewall a{
+    text-decoration:none;
+    color:grey;
+}
 .disc{
     background-position: -458px -250px;
     width: 24px;
