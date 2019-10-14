@@ -11,13 +11,12 @@ Users can sign up, login, view and post photos, search and follow other users.
 ## Screenshots 
 ###### Home page
  
-<img src="">
+<img src="https://raw.githubusercontent.com/Owiti-Charles/insta-lite/master/static/images/instagram.png">
  
  ###### user profile
- <img src=""> 
+ <img src="https://raw.githubusercontent.com/Owiti-Charles/insta-lite/master/static/images/profile.png"> 
 
- ###### Image Details 
- <img src="">
+
  
 ## User Story  
   
