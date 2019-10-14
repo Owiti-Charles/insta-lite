@@ -69,6 +69,6 @@ class Comment(models.Model):
         ordering = ["-pk"]
 
 
-class Likes(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user_likes')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes')
+class Follows(models.Model):
+    follow = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
