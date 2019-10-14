@@ -23,6 +23,12 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
 
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
     @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
