@@ -14,17 +14,16 @@
                         <div class="media-body">
                             <div class="account-heading">
                                 <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
-                            </div>
                                 {% for follower in followers%}
-                                    {% if user == follower.follower.user %}
-                                        <a href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
-                            <p>{{user_prof.username}}</p>
-                                    {%else%}
-                                        <a href="{% url 'follow' user_prof.profile.id %}">Follow</a>
-                                    {% endif %}
+                                {% if user == follower.follower.user %}
+                                <a class="btn btn-sm btn-outline-danger" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
+                                {%else%}
+                                <a class="btn btn-sm btn-info"href="{% url 'follow' user_prof.profile.id %}">Follow</a>
+                                {% endif %}
                                 {% empty %}
-                                        <a href="{% url 'follow' user_prof.profile.id %}">Follow</a>
-                            {% endfor %}
+                                <a class="btn btn-sm btn-info"href="{% url 'follow' user_prof.profile.id %}">Follow</a>
+                                {% endfor %}
+                            </div>
                         </div>
 
                         <div class="post-details mt-3 mb-3">
