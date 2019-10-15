@@ -52,12 +52,10 @@ class Post(models.Model):
     def get_all_comments(self):
         return self.comments.all()
 
-    @property
     def save_image(self):
         self.save()
 
-    @property
-    def delete(self):
+    def delete_image(self):
         self.delete()
 
     def total_likes(self):
