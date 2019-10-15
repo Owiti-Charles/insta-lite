@@ -30,7 +30,7 @@ def signup(request):
 @login_required(login_url='login')
 def index(request):
     images = Post.objects.all()
-    users = User.objects.all()
+    users = User.objects.exclude(id=request.user.id)
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -93,7 +93,7 @@ def post_comment(request, id):
     is_liked = False
     if image.likes.filter(id=request.user.id).exists():
         is_liked = True
-    if request.method == 'POST':
+    if request.method == 'Post':
         form = CommentForm(request.POST)
         if form.is_valid():
             savecomment = form.save(commit=False)
@@ -201,7 +201,6 @@ def unfollow(request, to_unfollow):
 
 def follow(request, to_follow):
     if request.method == 'GET':
-        print('********************************')
         user_profile3 = Profile.objects.get(pk=to_follow)
         follow_s = Follow(follower=request.user.profile, followed=user_profile3)
         follow_s.save()

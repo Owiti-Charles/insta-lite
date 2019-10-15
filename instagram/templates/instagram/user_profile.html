@@ -19,10 +19,8 @@
                                 <a class="btn btn-sm btn-outline-danger ml-5" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
 
                                 {%else%}
-                                
-                                <a class="btn btn-sm btn-primary ml-5"
-                                   href="{% url 'follow' user_prof.profile.id %}">Follow</a>
 
+                                <a class="btn btn-sm btn-primary ml-5" href="{% url 'follow' user_prof.profile.id %}">Follow</a>
                                 {% endif %}
                                 {% empty %}
                                 <a class="btn btn-sm btn-primary ml-5"
