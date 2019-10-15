@@ -43,10 +43,10 @@
                     <a href="{% url 'user_profile' image.user.user.username  %}" class="mt-4 user">{{image.user.user.username|title}}</a>
                 </div>
                 <div class="card-body mb-4">
-                    <div class="card-text"
+                    <a href="{% url 'comment' image.id %}"><div class="card-text"
                          style="background-image:url({{ image.image.url }});;background-size: contain;position: sticky">
-                        <img src="{{image.image.url}}" style="visibility: hidden;" class="card-img" width="100%"/>
-                    </div>
+                        <img src="{{image.image.url}}" style="" class="card-img" width="100%"/>
+                    </div></a>
                 </div>
                 <div class="iconic ml-2">
                     <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
