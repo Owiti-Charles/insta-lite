@@ -96,7 +96,7 @@
                                          width="45px" height="45px">
                                 </div>
                                 <div class="col-md-6 mr-2 mt-2">
-                                    <span><a href=""></a>{{user.username}}</span>
+                                    <span><a href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span>
                                 </div>
                                 <div class="col-md-4">
                                 </div>
