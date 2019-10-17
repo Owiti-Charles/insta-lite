@@ -42,9 +42,16 @@
     <div class="card-columns">
         {% for image in user_posts %}
         <div class="card">
-            <div class="card-body">
+            <div class="card-body parent ">
+                <div class="im">
                 <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
-            </div>
+                <p id="overlay"class="text"> 
+                    <i class="fas fa-heart" style="color:white; font-size: 18"></i> 
+                    <span style="color: white">{{image.likes.count}}</span>
+                     <i class="fas fa-comment ml-4" style="color: white"></i> <span style="color: white">{{image.comments.count}}</span></p>
+            
+                    </div>
+                    </div>
         </div>
         {% endfor %}
     </div>
